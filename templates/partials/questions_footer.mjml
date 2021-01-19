@@ -1,0 +1,21 @@
+<mj-section>
+  <mj-column>
+    <mj-text font-family="Open Sans"
+             font-weight="600"
+             font-size="16px"
+             line-height="24px"
+             align="center"
+             color="#3D3C40">
+      {{.Props.QuestionTitle}}
+    </mj-text>
+    <mj-text font-family="Open Sans"
+             font-size="14px"
+             line-height="20px"
+             align="center"
+             color="#3D3C40">
+      {{.Props.QuestionInfo}}
+      <a href='mailto:{{.Props.SupportEmail}}' color="#166DE0">
+      {{.Props.SupportEmail}}</a>
+    </mj-text>
+ </mj-column>
+</mj-section>

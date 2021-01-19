@@ -1,0 +1,12 @@
+<mj-section>
+  <mj-column>
+    <mj-text font-family="Open Sans"
+             font-size="12px"
+             line-height="16px"
+             align="center"
+             color="rgba(61, 60, 64, 0.56)">
+      {{.Props.Organization}}<br>
+      {{.Props.FooterV2}}
+    </mj-text>
+  </mj-column>
+</mj-section>

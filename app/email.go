@@ -154,12 +154,14 @@ func (es *EmailService) sendVerifyEmail(userEmail, locale, siteURL, token, redir
 	subject := T("api.templates.verify_subject",
 		map[string]interface{}{"SiteName": es.srv.Config().TeamSettings.SiteName})
 
-	bodyPage := es.newEmailTemplate("verify_body", locale)
+	bodyPage := es.newEmailTemplate("verify", locale)
 	bodyPage.Props["SiteURL"] = siteURL
-	bodyPage.Props["Title"] = T("api.templates.verify_body.title", map[string]interface{}{"ServerURL": serverURL})
-	bodyPage.Props["Info"] = T("api.templates.verify_body.info")
-	bodyPage.Props["VerifyUrl"] = link
-	bodyPage.Props["Button"] = T("api.templates.verify_body.button")
+	bodyPage.Props["Title"] = T("api.templates.verify.title")
+	bodyPage.Props["Info"] = T("api.templates.verify.info", map[string]interface{}{"ServerURL": serverURL})
+	bodyPage.Props["VerifyButton"] = T("api.templates.verify.button")
+	bodyPage.Props["Info2"] = T("api.templates.verify.info2")
+	bodyPage.Props["QuestionTitle"] = T("api.templates.questions_footer.title")
+	bodyPage.Props["QuestionInfo"] = T("api.templates.questions_footer.info")
 
 	if err := es.sendMail(userEmail, subject, bodyPage.Render(), true); err != nil {
 		return model.NewAppError("SendVerifyEmail", "api.user.send_verify_email_and_forget.failed.error", nil, err.Error(), http.StatusInternalServerError)
@@ -204,11 +206,11 @@ func (es *EmailService) sendWelcomeEmail(userId string, email string, verified b
 	bodyPage := es.newEmailTemplate("welcome", locale)
 	bodyPage.Props["SiteURL"] = siteURL
 	bodyPage.Props["Title"] = T("api.templates.welcome.title")
-	bodyPage.Props["Info"] = T("api.templates.welcome.info", map[string]interface{}{"ServerURL": serverURL})
-	bodyPage.Props["VerifyButton"] = T("api.templates.welcome.button")
-	bodyPage.Props["Info2"] = T("api.templates.welcome.info2")
+	bodyPage.Props["Info"] = T("api.templates.verify.info", map[string]interface{}{"ServerURL": serverURL})
+	bodyPage.Props["VerifyButton"] = T("api.templates.verify.button")
+	bodyPage.Props["Info2"] = T("api.templates.verify.info2")
 	bodyPage.Props["SiteURL"] = siteURL
-
+	
 	if *es.srv.Config().NativeAppSettings.AppDownloadLink != "" {
 		bodyPage.Props["AppDownloadTitle"] = T("api.templates.welcome.app_download_title")
 		bodyPage.Props["AppDownloadInfo"] = T("api.templates.welcome.app_download_info")
@@ -482,6 +484,7 @@ func (es *EmailService) newEmailTemplate(name, locale string) *utils.HTMLTemplat
 	}
 
 	t.Props["Footer"] = localT("api.templates.email_footer")
+	t.Props["FooterV2"] = localT("api.templates.email_footer_v2")
 
 	if *es.srv.Config().EmailSettings.FeedbackOrganization != "" {
 		t.Props["Organization"] = localT("api.templates.email_organization") + *es.srv.Config().EmailSettings.FeedbackOrganization

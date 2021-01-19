@@ -1,0 +1,26 @@
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column>
+        <mj-image src="{{.Props.SiteURL}}/static/images/logo_email_blue.svg" width="132px" height="21.76px"  alt="" align="center" />
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <!--TODO: Put Props.VerifyURL condition here! -->
+          <mj-text font-family="Open Sans"
+                   font-weight="600"
+                   font-size="28px"
+                   line-height="36px"
+                   align="center"
+                   letter-spacing="-0.02em"
+                   color="#3D3C40">
+            {{.Props.Title}}
+          </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-include path="./partials/verify.mjml" />
+    <mj-include path="./partials/questions_footer.mjml" />
+    <mj-include path="./partials/email_footer.mjml" />
+  </mj-body>
+</mjml>

@@ -2391,6 +2391,10 @@
     "translation": "To change your notification preferences, log in to your team site and go to Account Settings > Notifications."
   },
   {
+    "id": "api.templates.email_footer_v2",
+    "translation": "© 2020 Mattermost, Inc. 855 El Camino Real, 13A-168, Palo Alto, CA, 94301"
+  },
+  {
     "id": "api.templates.email_info1",
     "translation": "Any questions at all, mail us any time: "
   },
@@ -2473,6 +2477,14 @@
   {
     "id": "api.templates.post_body.button",
     "translation": "Go To Post"
+  },
+  {
+    "id": "api.templates.questions_footer.title",
+    "translation": "Questions?"
+  },
+  {
+    "id": "api.templates.questions_footer.info",
+    "translation": "Email us any time at "
   },
   {
     "id": "api.templates.remove_expired_license.body.renew_button",
@@ -2563,6 +2575,22 @@
     "translation": "[{{ .SiteName }}] Email Verification"
   },
   {
+    "id": "api.templates.verify.title",
+    "translation": "Welcome to the team"
+  },
+  {
+    "id": "api.templates.verify.button",
+    "translation": "Verify Email"
+  },
+  {
+    "id": "api.templates.verify.info",
+    "translation": "Thanks for joining {{ .ServerURL }}. Click below to verify your email address."
+  },
+  {
+    "id": "api.templates.verify.info2",
+    "translation": "This email address was used to create an account with Mattermost. If it was not you, you can safely ignore this email."
+  },
+  {
     "id": "api.templates.warn_metric_ack.body.contact_email_header",
     "translation": "Email: "
   },
@@ -2633,18 +2661,6 @@
   {
     "id": "api.templates.welcome.app_download_button",
     "translation": "Download"
-  },
-  {
-    "id": "api.templates.welcome.button",
-    "translation": "Verify Email"
-  },
-  {
-    "id": "api.templates.welcome.info",
-    "translation": "Thanks for joining {{ .ServerURL }}. Click below to verify your email address."
-  },
-  {
-    "id": "api.templates.welcome.info2",
-    "translation": "This email address was used to create an account with Mattermost. If it was not you, you can safely ignore this email."
   },
   {
     "id": "api.templates.welcome.title",
