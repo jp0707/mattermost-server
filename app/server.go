@@ -319,7 +319,7 @@ func NewServer(options ...Option) (*Server, error) {
 		}
 	}
 
-	if htmlTemplateWatcher, err := utils.NewHTMLTemplateWatcher("templates"); err != nil {
+	if htmlTemplateWatcher, err := utils.NewHTMLTemplateWatcher("templates", "templates/compiled"); err != nil {
 		mlog.Error("Failed to parse server templates", mlog.Err(err))
 	} else {
 		s.htmlTemplateWatcher = htmlTemplateWatcher

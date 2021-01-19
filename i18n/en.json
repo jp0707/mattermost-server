@@ -2622,6 +2622,34 @@
     "id": "api.templates.welcome_subject",
     "translation": "[{{ .SiteName }}] You joined {{ .ServerURL }}"
   },
+    {
+    "id": "api.templates.welcome.app_download_title",
+    "translation": "Download the desktop and mobile apps"
+  },
+  {
+    "id": "api.templates.welcome.app_download_info",
+    "translation": "For the best experience, download the apps for PC, Mac, iOS and Android."
+  },
+  {
+    "id": "api.templates.welcome.app_download_button",
+    "translation": "Download"
+  },
+  {
+    "id": "api.templates.welcome.button",
+    "translation": "Verify Email"
+  },
+  {
+    "id": "api.templates.welcome.info",
+    "translation": "Thanks for joining {{ .ServerURL }}. Click below to verify your email address."
+  },
+  {
+    "id": "api.templates.welcome.info2",
+    "translation": "This email address was used to create an account with Mattermost. If it was not you, you can safely ignore this email."
+  },
+  {
+    "id": "api.templates.welcome.title",
+    "translation": "Verify your email address"
+  },
   {
     "id": "api.user.activate_mfa.email_and_ldap_only.app_error",
     "translation": "MFA is not available for this account type."
