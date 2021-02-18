@@ -292,10 +292,12 @@ func (es *EmailService) SendPasswordResetEmail(email string, token *model.Token,
 	bodyPage := es.newEmailTemplate("reset_body", locale)
 	bodyPage.Props["SiteURL"] = siteURL
 	bodyPage.Props["Title"] = T("api.templates.reset_body.title")
-	bodyPage.Props["Info1"] = utils.TranslateAsHtml(T, "api.templates.reset_body.info1", nil)
-	bodyPage.Props["Info2"] = T("api.templates.reset_body.info2")
-	bodyPage.Props["ResetUrl"] = link
+	bodyPage.Props["SubTitle"] = T("api.templates.reset_body.subTitle")
+	bodyPage.Props["Info"] = T("api.templates.reset_body.info")
+	bodyPage.Props["ButtonUrl"] = link
 	bodyPage.Props["Button"] = T("api.templates.reset_body.button")
+	bodyPage.Props["QuestionTitle"] = T("api.templates.questions_footer.title")
+	bodyPage.Props["QuestionInfo"] = T("api.templates.questions_footer.info")
 
 	if err := es.sendMail(email, subject, bodyPage.Render()); err != nil {
 		return false, model.NewAppError("SendPasswordReset", "api.user.send_password_reset.send.app_error", nil, "err="+err.Error(), http.StatusInternalServerError)
@@ -355,13 +357,13 @@ func (es *EmailService) SendInviteEmails(team *model.Team, senderName string, se
 
 			bodyPage := es.newEmailTemplate("invite_body", "")
 			bodyPage.Props["SiteURL"] = siteURL
-			bodyPage.Props["Title"] = utils.T("api.templates.invite_body.title")
-			bodyPage.Html["Info"] = utils.TranslateAsHtml(utils.T, "api.templates.invite_body.info",
-				map[string]interface{}{"SenderName": senderName, "TeamDisplayName": team.DisplayName})
+			bodyPage.Props["Title"] = utils.T("api.templates.invite_body.title", map[string]interface{}{"SenderName": senderName, "TeamDisplayName": team.DisplayName})
+			bodyPage.Props["SubTitle"] = utils.T("api.templates.invite_body.subTitle")
 			bodyPage.Props["Button"] = utils.T("api.templates.invite_body.button")
-			bodyPage.Html["ExtraInfo"] = utils.TranslateAsHtml(utils.T, "api.templates.invite_body.extra_info",
-				map[string]interface{}{"TeamDisplayName": team.DisplayName})
-			bodyPage.Props["TeamURL"] = siteURL + "/" + team.Name
+			bodyPage.Props["SenderName"] = senderName
+			bodyPage.Props["InviteFooterTitle"] = utils.T("api.templates.invite_body_footer.title")
+			bodyPage.Props["InviteFooterInfo"] = utils.T("api.templates.invite_body_footer.info")
+			bodyPage.Props["InviteFooterLearnMore"] = utils.T("api.templates.invite_body_footer.learn_more")
 
 			token := model.NewToken(
 				TokenTypeTeamInvitation,
@@ -414,19 +416,17 @@ func (es *EmailService) sendGuestInviteEmails(team *model.Team, channels []*mode
 
 			bodyPage := es.newEmailTemplate("invite_body", "")
 			bodyPage.Props["SiteURL"] = siteURL
-			bodyPage.Props["Title"] = utils.T("api.templates.invite_body.title")
-			bodyPage.Html["Info"] = utils.TranslateAsHtml(utils.T, "api.templates.invite_body_guest.info",
-				map[string]interface{}{"SenderName": senderName, "TeamDisplayName": team.DisplayName})
+			bodyPage.Props["Title"] = utils.T("api.templates.invite_body.title", map[string]interface{}{"SenderName": senderName, "TeamDisplayName": team.DisplayName})
+			bodyPage.Props["SubTitle"] = utils.T("api.templates.invite_body_guest.subTitle")
 			bodyPage.Props["Button"] = utils.T("api.templates.invite_body.button")
 			bodyPage.Props["SenderName"] = senderName
-			bodyPage.Props["SenderId"] = senderUserId
 			bodyPage.Props["Message"] = ""
 			if message != "" {
 				bodyPage.Props["Message"] = message
 			}
-			bodyPage.Html["ExtraInfo"] = utils.TranslateAsHtml(utils.T, "api.templates.invite_body.extra_info",
-				map[string]interface{}{"TeamDisplayName": team.DisplayName})
-			bodyPage.Props["TeamURL"] = siteURL + "/" + team.Name
+			bodyPage.Props["InviteFooterTitle"] = utils.T("api.templates.invite_body_footer.title")
+			bodyPage.Props["InviteFooterInfo"] = utils.T("api.templates.invite_body_footer.info")
+			bodyPage.Props["InviteFooterLearnMore"] = utils.T("api.templates.invite_body_footer.learn_more")
 
 			channelIds := []string{}
 			for _, channel := range channels {
