@@ -123,8 +123,8 @@
     padding:0px !important;
   }
 
-  .senderMessageCol div {
-    width:452px !important;
+  .senderMessageCol {
+    align-items:left !important;
   }
 
   @media all and (min-width: 541px) {
