@@ -86,8 +86,13 @@
   <style type="text/css">
     @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700);
 
-    body {
+    .emailBody {
       background: #F3F3F3 !important;
+    }
+
+    .emailBody a {
+      text-decoration: none !important;
+      color: #166DE0 !important;
     }
 
     .title div {
@@ -177,6 +182,10 @@
       border-radius: 32px !important;
     }
 
+    .messageAvatarCol {
+      width: 32px !important;
+    }
+
     .senderName div {
       text-align: left !important;
       font-weight: 600 !important;
@@ -194,24 +203,34 @@
       padding: 0px !important;
     }
 
-    .senderMessageCol div {
-      width: 452px !important;
+    .senderInfoCol {
+      width: 394px !important;
+      padding: 0px 0px 0px 12px !important;
     }
 
     @media all and (min-width: 541px) {
-      body {
+      .emailBody {
         padding: 32px !important;
       }
     }
 
     @media all and (max-width: 540px) and (min-width: 401px) {
-      body {
+      .emailBody {
         padding: 16px !important;
+      }
+
+      .messageCard {
+        padding: 16px !important;
+      }
+
+      .senderInfoCol {
+        width: 80% !important;
+        padding: 0px 0px 0px 12px !important;
       }
     }
 
     @media all and (max-width: 400px) {
-      body {
+      .emailBody {
         padding: 0px !important;
       }
 
@@ -219,23 +238,24 @@
         padding: 0px !important;
       }
 
-      .senderMessageCol div {
-        width: 216px !important;
-      }
-
       .messageCard {
         padding: 16px !important;
       }
 
       .postCard {
-        padding: 0px !important;
+        padding: 0px 0px 40px 0px !important;
+      }
+
+      .senderInfoCol {
+        width: 80% !important;
+        padding: 0px 0px 0px 12px !important;
       }
     }
   </style>
 </head>
 
 <body style="word-spacing:normal;">
-  <div style="">
+  <div class="emailBody" style="">
     <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
     <div style="background:#FFFFFF;background-color:#FFFFFF;margin:0px auto;border-radius:8px;max-width:600px;">
       <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#FFFFFF;background-color:#FFFFFF;width:100%;border-radius:8px;">
@@ -247,38 +267,6 @@
                 <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
                   <tbody>
                     <tr>
-                      <td style="direction:ltr;font-size:0px;padding:0px 0px 40px 0px;text-align:center;">
-                        <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:552px;" ><![endif]-->
-                        <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
-                            <tbody>
-                              <tr>
-                                <td align="center" style="font-size:0px;padding:0px;word-break:break-word;">
-                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                                    <tbody>
-                                      <tr>
-                                        <td style="width:132px;">
-                                          <img alt="" height="21" src="{{.Props.SiteURL}}/static/images/logo_email_blue.png" style="border:0;display:block;outline:none;text-decoration:none;height:21.76px;width:100%;font-size:13px;" width="132" />
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <!--[if mso | IE]></td></tr></table><![endif]-->
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!--[if mso | IE]></td></tr></table></td></tr><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" style="width:552px;" width="552" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-              <div style="margin:0px auto;max-width:552px;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-                  <tbody>
-                    <tr>
                       <td style="direction:ltr;font-size:0px;padding:0px 24px 40px 24px;text-align:center;">
                         <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:504px;" ><![endif]-->
                         <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
@@ -286,12 +274,12 @@
                             <tbody>
                               <tr>
                                 <td align="center" class="title" style="font-size:0px;padding:0px;word-break:break-word;">
-                                  <div style="font-family:Open Sans;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.Title}}</div>
+                                  <div style="font-family:Open Sans, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.Title}}</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="center" class="subTitle" style="font-size:0px;padding:16px 24px 16px 24px;word-break:break-word;">
-                                  <div style="font-family:Open Sans;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.SubTitle}}</div>
+                                  <div style="font-family:Open Sans, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.SubTitle}}</div>
                                 </td>
                               </tr>
                               <tr>
@@ -299,7 +287,7 @@
                                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%;">
                                     <tr>
                                       <td align="center" bgcolor="#FFFFFF" role="presentation" style="border:none;border-radius:4px;cursor:auto;mso-padding-alt:10px 25px;background:#FFFFFF;" valign="middle">
-                                        <a href="{{.Props.ButtonUrl}}" style="display:inline-block;background:#FFFFFF;color:#ffffff;font-family:Open Sans;font-size:13px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:4px;" target="_blank">
+                                        <a href="{{.Props.ButtonUrl}}" style="display:inline-block;background:#FFFFFF;color:#ffffff;font-family:Open Sans, sans-serif;font-size:13px;font-weight:normal;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:4px;" target="_blank">
                                           {{.Props.Button}}
                                         </a>
                                       </td>
@@ -341,7 +329,7 @@
                               </tr>
                               <tr>
                                 <td align="center" class="info" style="font-size:0px;padding:0px;word-break:break-word;">
-                                  <div style="font-family:Open Sans;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.Info}}</div>
+                                  <div style="font-family:Open Sans, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.Info}}</div>
                                 </td>
                               </tr>
                             </tbody>
@@ -365,13 +353,13 @@
                             <tbody>
                               <tr>
                                 <td align="center" class="footerTitle" style="font-size:0px;padding:0px;word-break:break-word;">
-                                  <div style="font-family:Open Sans;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.QuestionTitle}}</div>
+                                  <div style="font-family:Open Sans, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.QuestionTitle}}</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="center" class="footerInfo" style="font-size:0px;padding:0px;word-break:break-word;">
-                                  <div style="font-family:Open Sans;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.QuestionInfo}}
-                                    <a href='mailto:{{.Props.SupportEmail}}' color="#166DE0">
+                                  <div style="font-family:Open Sans, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.QuestionInfo}}
+                                    <a href='mailto:{{.Props.SupportEmail}}'>
                                       {{.Props.SupportEmail}}</a>
                                   </div>
                                 </td>
@@ -397,7 +385,7 @@
                             <tbody>
                               <tr>
                                 <td align="center" class="emailFooter" style="font-size:0px;padding:0px;word-break:break-word;">
-                                  <div style="font-family:Open Sans;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.Organization}}
+                                  <div style="font-family:Open Sans, sans-serif;font-size:13px;line-height:1;text-align:center;color:#000000;">{{.Props.Organization}}
                                     {{.Props.FooterV2}}
                                   </div>
                                 </td>
